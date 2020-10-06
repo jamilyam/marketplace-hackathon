@@ -13,7 +13,6 @@ import {
 } from "@material-ui/core";
 import {
   MoreVert as MoreVertIcon,
-  Share,
   ShoppingCart,
 } from "@material-ui/icons";
 import emptyImage from "../assets/empty-image.png";
@@ -107,7 +106,7 @@ export default function ProductCard({ data }) {
             </Button>
           )}
 
-          <Button size="medium" variant="contained" color="primary">
+          <Button size="large" color="primary">
             {data.salePrice ?? data.price}
           </Button>
         </div>
