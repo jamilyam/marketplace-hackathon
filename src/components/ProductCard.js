@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CardHeader,
   Card,
@@ -16,6 +16,7 @@ import {
   ShoppingCart,
 } from "@material-ui/icons";
 import emptyImage from "../assets/empty-image.png";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -51,13 +52,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProductCard({ data }) {
   const classes = useStyles();
+  const [isEdit, setEdit] = useState(false);
+  const history = useHistory();
+  const handleEditClick = (e) => {
+    e.stopPropagation();
+    setEdit(!isEdit);
+    history.replace("/products/" + data.id);
+  };
 
   return (
     <Card className={classes.card}>
       <CardHeader
         avatar={<Avatar>{data.author[0] || "?"}</Avatar>}
         action={
-          <IconButton aria-label="settings">
+          <IconButton aria-label="settings" onClick={handleEditClick}>
             <MoreVertIcon />
           </IconButton>
         }
@@ -108,6 +116,13 @@ export default function ProductCard({ data }) {
 
           <Button size="large" color="primary">
             {data.salePrice ?? data.price}
+          </Button>
+          <Button
+            size="large"
+            color="primary"
+            onClick={() => history.replace("/products/" + data.id)}
+          >
+            Подробнее
           </Button>
         </div>
       </CardActions>
