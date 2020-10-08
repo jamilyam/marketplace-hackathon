@@ -1,6 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import { Redirect, Route, BrowserRouter, Switch } from "react-router-dom";
 import Layout from "../components/layouts/Layout";
+import ProductPage from "./ProductPage";
+import ProductList from "../components/ProductList";
 
 export const getLoggedInUser = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -59,6 +61,18 @@ const Routes = () => {
             </Layout>
           </PrivateRoute>
 
+          <PrivateRoute exact path="/products">
+            <Layout>
+              <ProductList />
+            </Layout>
+          </PrivateRoute>
+
+          <PrivateRoute exact path="/products/:id">
+            <Layout>
+              <ProductPage />
+            </Layout>
+          </PrivateRoute>
+
           <PrivateRoute exact path="/contacts">
             <Layout>
               <Contacts />
@@ -71,15 +85,15 @@ const Routes = () => {
             </Layout>
           </PrivateRoute>
 
-          <PrivateRoute exact path="/myorder">
+          <PrivateRoute exact path="/my-order">
             <Layout>
               <MyOrder />
             </Layout>
           </PrivateRoute>
 
-          <PrivateRoute exact path="/myorder">
+          <PrivateRoute exact path="/order-form">
             <Layout>
-              <OrderForm  />
+              <OrderForm />
             </Layout>
           </PrivateRoute>
 

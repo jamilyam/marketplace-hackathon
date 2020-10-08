@@ -30,7 +30,7 @@ export default function Login() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const {error,isAuth, loading} = useSelector(state=>state.auth);
+  const {error, isAuth, loading} = useSelector(state=>state.auth);
   const LoginForm = ({
     values,
     errors,
