@@ -1,0 +1,81 @@
+.header{
+  background: url(https://assets3.insales.ru/assets/1/3314/888050/1547865036/header_slide_1-loaded.jpg) center top no-repeat;
+  color: #ffffff;
+}
+
+.headertop {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerbottom {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+  
+}
+
+.leftside {
+  padding-top: 10px;
+}
+
+.rightside {
+  display: flex;
+}
+
+.footer{
+  align-items: center;
+  margin: auto;
+  background: url(https://mota.ru/upload/wallpapers/source/2013/10/16/16/05/37762/N8Hi8bqn69.jpg) center top no-repeat;
+}
+.container{
+  display: flex;
+  justify-content: space-around;
+  padding: 0px 200px;
+}
+
+.footer_logo{
+  margin: 10px;
+}
+
+.footer_phone{
+  margin: 10px;
+}
+
+.footer_email{
+  margin: 10px;
+}
+
+.footer_subscribe{
+  margin-top: 20px;
+  display: flex;
+}
+
+.subscribe_form{
+  display: flex;
+}
+
+.subscribe_title{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.subscribe_button{
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.footer_menu{
+  display: block;
+}
+
+.menu_list{
+  list-style-type: none;
+}
+
+.menu_item{
+  margin-top: 3px;
+}
