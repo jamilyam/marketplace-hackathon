@@ -72,7 +72,7 @@ export default function Footer() {
                   id="validation-outlined-input"
                 />
                 <div className={styles.subscribe_button}>
-                  <Button color="secondary">Подписаться</Button>
+                  <Button color="primary">Подписаться</Button>
                 </div>
               </form>
             </div>

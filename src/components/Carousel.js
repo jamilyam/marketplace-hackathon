@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
   banner: {
     height: "400px",
     position: "relative",
+    width: "100vw",
   },
   media: {
     height: 0,
@@ -37,12 +38,12 @@ export default function SlideShow(props) {
     {
       name: "Распродажа",
       description: "Специальное предложение на сноуборд СНОУБОРД BURTON CLASH за 8000 сом",
-      image: "https://www.snowlab.co.uk/media/wysiwyg/infortis/fortis/slideshow/Snowboard-Sale-Slider.jpg",
+      image: "https://assets3.insales.ru/assets/1/3314/888050/1547865036/header_slide_1-loaded.jpg",
     },
     {
       name: "Новинка",
       description: "СНОУБОРД BLACK FIRE FIRE за 14000 сом",
-      image: "https://www.snowboard-asylum.com/media/weltpixel/owlcarouselslider/images/r/i/ride_mobile.jpg",
+      image: "https://assets3.insales.ru/assets/1/3314/888050/1547865036/header_slide_2-loaded.jpg",
     },
     {
       name: "Акция",
@@ -69,7 +70,7 @@ function Item(props) {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <Paper>
+    <Paper size="large">
       <Grid className="baner" item xs={12} key={props.item.name}>
         <CardMedia
           className={classes.media}
@@ -84,7 +85,9 @@ function Item(props) {
               variant="outlined"
               color="primary"
               onClick={() => history.replace("/auth/register")}
-            >Подробнее</Button>
+            >
+              Подробнее
+            </Button>
           </Typography>
         </CardMedia>
       </Grid>

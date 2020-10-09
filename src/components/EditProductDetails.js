@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import Axios from 'axios'
 import { editProduct } from '../redux/actions'
+import { deleteProduct } from "../redux/actions";
 // import {
 //   Card, CardImg, CardBody,
 //   CardTitle, CardSubtitle, Button
@@ -47,16 +48,21 @@ export default function EditProductDetails() {
     e.preventDefault();
     dispatch(editProduct({
       ...data,
+      id:data.id,
       title:data.title,
       description:data.description,
       price:data.price,
       updatedAt: new Date().toJSON(),
-    },[]));
+    }));
   }
+    const handleDelete = (e) => {
+      e.preventDefault();
+      dispatch(deleteProduct(data.id));
+    };
 
   return (
     <div>
-      <Form onClick={(e) => e.stopPropagation()}>
+      <Form onSubmit={handleChangeProduct}>
         <FormGroup>
           <Label for="exampleEmail">Name</Label>
           <Input
@@ -83,7 +89,8 @@ export default function EditProductDetails() {
         </FormGroup>
         <p>created at: {new Date(data.createdAt).toLocaleString()}</p>
         <p>updated at: {new Date(data.updatedAt).toLocaleString()}</p>
-        <Button onClick={handleChangeProduct}>Edit</Button>
+        <Button onSubmit={handleChangeProduct}>Edit</Button>
+        <Button onClick={handleDelete}>Delete</Button>
       </Form>
     </div>
   );
