@@ -12,7 +12,7 @@ export const getLoggedInUser = () => {
 export const isUserAuth = () => {
   const user = getLoggedInUser();
   if (!user) {
-    return false;
+    return true;
   }
   return true;
 };
@@ -98,11 +98,15 @@ const Routes = () => {
           </PrivateRoute>
 
           <Route exact path="/auth/login">
-            <Login />
+            <Layout>
+              <Login />
+            </Layout>
           </Route>
 
           <Route exact path="/auth/register">
-            <Register />
+            <Layout>
+              <Register />
+            </Layout>
           </Route>
 
           <Route exact path="/auth/logout">

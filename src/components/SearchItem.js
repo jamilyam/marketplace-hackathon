@@ -8,6 +8,7 @@ export default function SearchItem() {
   const location = useLocation();
   const search = new URLSearchParams(location.search);
   const history = useHistory();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     history.replace(location.pathname + "?" + search.toString());
