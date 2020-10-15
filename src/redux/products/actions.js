@@ -5,18 +5,22 @@ export const fetchData = () => (dispatch) => {
   dispatch({
     type: FETCH_DATA,
   });
-  Axios.get(process.env.REACT_APP_API_URL + "/products")
-    .then(({ data }) => {
-      dispatch(fetchDataSuccess(data));
+  const query = new URLSearchParams(window.location.search);
+  query.set("_limit", 5);
+  
+  Axios.get(process.env.REACT_APP_API_URL + `/products?${query.toString()}`)
+    .then(({ data, headers }) => {
+      const totalCount = headers["x-total-count"] || data.length
+      dispatch(fetchDataSuccess(data, parseInt(totalCount)));
     })
     .catch((err) => {
       dispatch(fetchDataFailed(err));
     });
 };
 
-export const fetchDataSuccess = (data) => ({
+export const fetchDataSuccess = (data, total) => ({
   type: FETCH_DATA_SUCCESS,
-  payload: data,
+  payload: {data, total}
 });
 
 export const fetchDataFailed = (err) => ({

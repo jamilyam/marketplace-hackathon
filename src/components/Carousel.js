@@ -5,9 +5,9 @@ import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   banner: {
-    height: "400px",
+    // height: "400px",
     position: "relative",
-    width: "100vw",
+    // width: "100vw",
   },
   media: {
     height: 0,
