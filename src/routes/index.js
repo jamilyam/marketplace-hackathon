@@ -12,12 +12,12 @@ export const getLoggedInUser = () => {
 export const isUserAuth = () => {
   const user = getLoggedInUser();
   if (!user) {
-    return true;
+    return false;
   }
   return true;
 };
 
-export const PrivateRoute = (props) => {
+const PrivateRoute = (props) => {
   const { children, ...rest } = props;
   return (
     <Route
@@ -28,7 +28,7 @@ export const PrivateRoute = (props) => {
         ) : (
           <Redirect
             to={{
-              pathname:"/auth/login",
+              pathname: "/auth/login",
               state: { from: props.location },
             }}
           />
@@ -42,7 +42,7 @@ export const PrivateRoute = (props) => {
 const Home = lazy(() => import("./Home"));
 const Contacts = lazy(() => import("./Contacts"));
 const Admin = lazy(() => import("./Admin"));
-const MyOrder = lazy(() => import("./MyOrder"));
+const ShoppingCart = lazy(() => import("./ShoppingCart"));
 const OrderForm = lazy(() => import("./OrderForm"));
 const Catalog = lazy(() => import("./Catalog"));
 
@@ -56,23 +56,23 @@ const Routes = () => {
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
-        <PrivateRoute exact path="/Catalog">
-            <Layout>
-              <Catalog />
-            </Layout>
-          </PrivateRoute>
-
-          <PrivateRoute exact path="/">
+          <Route exact path="/">
             <Layout>
               <Home />
             </Layout>
-          </PrivateRoute>
+          </Route>
+             
+        <Route exact path="/Catalog">
+            <Layout>
+              <Catalog />
+            </Layout>
+          </Route>
 
-          <PrivateRoute exact path="/products">
+          <Route exact path="/products">
             <Layout>
               <ProductList />
             </Layout>
-          </PrivateRoute>
+          </Route>
 
           <PrivateRoute exact path="/products/:id">
             <Layout>
@@ -80,11 +80,11 @@ const Routes = () => {
             </Layout>
           </PrivateRoute>
 
-          <PrivateRoute exact path="/contacts">
+          <Route exact path="/contacts">
             <Layout>
               <Contacts />
             </Layout>
-          </PrivateRoute>
+          </Route>
 
           <PrivateRoute exact path="/admin">
             <Layout>
@@ -92,11 +92,11 @@ const Routes = () => {
             </Layout>
           </PrivateRoute>
 
-          <PrivateRoute exact path="/my-order">
+          <Route exact path="/shopping-cart">
             <Layout>
-              <MyOrder />
+              <ShoppingCart />
             </Layout>
-          </PrivateRoute>
+          </Route>
 
           <PrivateRoute exact path="/order-form">
             <Layout>

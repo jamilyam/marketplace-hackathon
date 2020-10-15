@@ -2,22 +2,20 @@ import {
   Button,
   Container,
   Grid,
-  IconButton,
-  TextField,
 } from "@material-ui/core";
 
 import {
   AccountBoxRounded,
   CompareRounded,
-  ShoppingCartSharp,
 } from "@material-ui/icons";
 import React from "react";
-import {
-  withStyles,
-} from "@material-ui/core/styles";
+
+import { withStyles } from "@material-ui/core/styles";
+
 import { useHistory } from "react-router-dom";
 import styles from "./Header.module.css";
 import SearchItem from "./SearchItem";
+import ShoppingIcon from "./ShoppingIcon";
 import TemporaryDrawer from "../routes/Catalog";
 
 
@@ -37,6 +35,7 @@ export default function Header() {
 
   const toggleDrawer = ()=>setIsDraweropen(!isDrawerOpen);
 
+
   const history = useHistory();
 
   const logout = () => {
@@ -51,6 +50,18 @@ export default function Header() {
           <span>0777 777 777</span>
         </div>
         <div className={styles.image}>
+          <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png" alt="header"></img>{" "}
+        </div>
+        <div className={styles.headercart}>
+          
+            <span>0 сом</span>
+            <ColorButton aria-label="login">
+              {" "}
+              <ShoppingIcon />
+            </ColorButton>
+        </div>
+      </div>
+
           <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png"></img>
         </div>
         <div className={styles.headercart}>
@@ -62,6 +73,7 @@ export default function Header() {
           </a>
         </div>
       </div>
+
       <div className={styles.headerbottom} maxWidth="md">
         <div className={styles.leftside} maxWidth="md">
           <Grid container>
@@ -76,6 +88,11 @@ export default function Header() {
               </ColorButton>
             </Grid>
             <Grid item>
+              <ColorButton onClick={() => history.replace("/shopping-cart")}>
+                ABOUT US
+              </ColorButton>
+            </Grid>
+
               <ColorButton onClick={() => history.replace("/about-us")}>
                 ABOUT US
               </ColorButton>
@@ -101,6 +118,14 @@ export default function Header() {
               />
             </ColorButton>
             <ColorButton aria-label="login">
+
+              <AccountBoxRounded
+                onClick={() => history.replace("/auth/login")}
+              />
+            </ColorButton>
+          </div>
+        </div>
+      </div>
               <AccountBoxRounded/>
             </ColorButton>
           </div>
@@ -108,6 +133,7 @@ export default function Header() {
       </div>
 
       <TemporaryDrawer isOpen={isDrawerOpen} toggle={toggleDrawer}/>
+
     </Container>
   );
 }

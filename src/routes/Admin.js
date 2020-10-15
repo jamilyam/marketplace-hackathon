@@ -1,13 +1,20 @@
 import React from "react";
 import ProductAddForm from "../components/ProductAddForm";
-import { Container } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import ProductList from "../components/ProductList";
+import Orders from "../components/cart/Orders";
+
 
 export default function Admin() {
   return (
     <Container maxWidth="md">
-      <ProductAddForm/>
+      <Grid>
+        <Orders />
+      </Grid>
+      <Grid>
+        <ProductAddForm />
+      </Grid>
       <ProductList />
     </Container>
-  )
+  );
 }

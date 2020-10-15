@@ -8,6 +8,7 @@ import {
   Grid,
   Button,
   FormControlLabel,
+  TextareaAutosize,
 } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -29,7 +30,6 @@ class ProductAddForm extends Component {
     gender: "",
   };
   handleSubmitOn = (e) => {
-    
     const product = {
       id: Date.now(),
       title: this.state.title,
@@ -64,48 +64,11 @@ class ProductAddForm extends Component {
       gender: "",
     });
   };
-  handleTitle = (e) => {
-    const text = e.target.value;
-    this.setState({
-      title: text,
-    });
+
+  handleInput = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   };
-  handleDesc = (e) => {
-    const text = e.target.value;
-    this.setState({
-      description: text,
-    });
-  };
-  handlePrice = (e) => {
-    const text = e.target.value;
-    this.setState({
-      price: text,
-    });
-  };
-  handleSale = (e) => {
-    const text = e.target.value;
-    this.setState({
-      onSale: true,
-    });
-  };
-  handleSalePrice = (e) => {
-    const text = e.target.value;
-    this.setState({
-      salePrice: text,
-    });
-  };
-  handleImage = (e) => {
-    const text = e.target.value;
-    this.setState({
-      image: text,
-    });
-  };
-  handleCategory = (e) => {
-    const text = e.target.value;
-    this.setState({
-      category: text,
-    });
-  };
+
   render() {
     return (
       <div style={{ padding: 16, margin: "auto", maxWidth: 600 }}>
@@ -117,61 +80,116 @@ class ProductAddForm extends Component {
               <Paper style={{ padding: 16 }}>
                 <Grid container alignItems="flex-start" spacing={2}>
                   <Grid item xs={12}>
-                    <InputLabel htmlFor="component-simple">Title</InputLabel>
+                    <InputLabel htmlFor="component-simple">
+                      Название товара
+                    </InputLabel>
                     <Input
                       fullWidth
+                      name="title"
                       id="component-simple"
                       value={this.state.title}
-                      onChange={this.handleTitle}
+                      onChange={this.handleInput}
                       aria-describedby="component-simple"
                     />
                   </Grid>
                   <Grid item xs={6}>
-                    <InputLabel htmlFor="component-simple">Price</InputLabel>
+                    <InputLabel htmlFor="component-simple">Цена</InputLabel>
                     <Input
                       fullWidth
+                      name="price"
                       id="component-simple"
                       value={this.state.price}
-                      onChange={this.handlePrice}
+                      onChange={this.handleInput}
                       aria-describedby="component-simple"
                     />
                   </Grid>
                   <Grid item xs={6}>
                     <InputLabel htmlFor="component-simple">
-                      Sale Price
+                      Цена со скидкой
                     </InputLabel>
                     <Input
                       fullWidth
+                      name="salePrice"
                       id="component-simple"
                       value={this.state.salePrice}
-                      onChange={this.handleSalePrice}
+                      onChange={this.handleInput}
                       aria-describedby="component-simple"
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <InputLabel htmlFor="component-simple">
-                      Description
+                      Описание товара
                     </InputLabel>
-                    <Input
+                    <TextareaAutosize
                       fullWidth
+                      rowsMax={5}
+                      name="description"
                       id="component-simple"
-                      onChange={this.handleDesc}
+                      onChange={this.handleInput}
                       value={this.state.description}
                       aria-describedby="component-simple"
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <InputLabel htmlFor="component-simple">
-                      Image
-                    </InputLabel>
+                    <InputLabel htmlFor="component-simple">Картинка</InputLabel>
                     <Input
                       fullWidth
+                      name="image"
                       id="component-simple"
-                      onChange={this.handleImage}
+                      onChange={this.handleInput}
                       value={this.state.image}
                       aria-describedby="component-simple"
                     />
                   </Grid>
+                  <Grid item xs={6}>
+                    <InputLabel htmlFor="component-simple">
+                      Категория
+                    </InputLabel>
+                    <Input
+                      fullWidth
+                      name="category"
+                      id="component-simple"
+                      onChange={this.handleInput}
+                      value={this.state.category}
+                      aria-describedby="component-simple"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <InputLabel htmlFor="component-simple">Бренд</InputLabel>
+                    <Input
+                      fullWidth
+                      name="brand"
+                      id="component-simple"
+                      onChange={this.handleInput}
+                      value={this.state.brand}
+                      aria-describedby="component-simple"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <InputLabel htmlFor="component-simple">Автор</InputLabel>
+                    <Input
+                      fullWidth
+                      name="author"
+                      id="component-simple"
+                      onChange={this.handleInput}
+                      value={this.state.author}
+                      aria-describedby="component-simple"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <InputLabel htmlFor="component-simple">
+                      Номер телефона
+                    </InputLabel>
+                    <Input
+                      fullWidth
+                      name="phone"
+                      id="component-simple"
+                      onChange={this.handleInput}
+                      value={this.state.phone}
+                      aria-describedby="component-simple"
+                    />
+                  </Grid>
+
                   <Grid item xs={12}>
                     <FormControlLabel
                       label="onSale"
@@ -186,12 +204,12 @@ class ProductAddForm extends Component {
                   </Grid>
                   <Grid item style={{ marginTop: 16 }}>
                     <Button
-                      type="button"
+                      type="reset"
                       variant="contained"
                       onClick={reset}
                       disabled={submitting || pristine}
                     >
-                      Reset
+                      Сбросить
                     </Button>
                   </Grid>
                   <Grid item style={{ marginTop: 16 }}>
@@ -201,7 +219,7 @@ class ProductAddForm extends Component {
                       type="submit"
                       disabled={submitting}
                     >
-                      Submit
+                      Добавить товар
                     </Button>
                   </Grid>
                 </Grid>
@@ -215,6 +233,6 @@ class ProductAddForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.contact;
+  return state.products;
 };
 export default connect(mapStateToProps, { addProduct })(ProductAddForm);

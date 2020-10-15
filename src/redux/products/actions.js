@@ -1,9 +1,19 @@
-import { FETCH_DATA, FETCH_DATA_SUCCESS, FETCH_DATA_FAILED } from "./constants";
+import {
+  FETCH_DATA,
+  FETCH_DATA_SUCCESS,
+  FETCH_DATA_FAILED,
+  ADD_ITEM_TO_CART,
+  REMOVE_ITEM_FROM_CART,
+  CLEAR_CART,
+  CREATE_ORDER,
+  CLEAR_ORDER,
+  FETCH_ORDERS,
+} from "./constants";
 import Axios from "axios";
 
-export const fetchData = () => (dispatch) => {
+export const fetchData = (page=1)=>(dispatch)=>{
   dispatch({
-    type: FETCH_DATA,
+    type: FETCH_DATA
   });
   const query = new URLSearchParams(window.location.search);
   query.set("_limit", 5);
@@ -13,9 +23,9 @@ export const fetchData = () => (dispatch) => {
       const totalCount = headers["x-total-count"] || data.length
       dispatch(fetchDataSuccess(data, parseInt(totalCount)));
     })
-    .catch((err) => {
+    .catch(err=>{
       dispatch(fetchDataFailed(err));
-    });
+    })
 };
 
 export const fetchDataSuccess = (data, total) => ({
@@ -56,3 +66,57 @@ export const deleteProduct = (id, cb = () => {}) => (dispatch) => {
     })
     .catch((err) => dispatch(fetchDataFailed(err)));
 };
+
+///cart actions
+
+export const addItemToCart = (item)=> (dispatch, getState)=>{
+  const cart = [...getState().products.cart];
+  const isInCart = cart.some((cartItem)=>{
+    return cartItem.id === item.id;
+  });
+  if(!isInCart){
+    cart.push(item);
+    dispatch({
+      type: ADD_ITEM_TO_CART,
+      payload: cart
+    })
+  };
+}
+
+export const removeItemFromCart = (item) => (dispatch, getState) => {
+  const cart = getState().products.cart.filter(
+    (cartItem) => cartItem.id !== item.id
+  );
+  dispatch({
+    type: REMOVE_ITEM_FROM_CART,
+    payload: cart
+  });
+};
+
+export const clearCart = () => ({
+  type: CLEAR_CART,
+  payload: []
+});
+
+///orders
+
+export const createOrder = (order) => (dispatch) => {
+  Axios.post(process.env.REACT_APP_API_URL + "/orders", order)
+    .then((response) => {
+      dispatch({ type: CREATE_ORDER, payload: response.data });
+      localStorage.clear("cart");
+      dispatch(clearCart());
+    });
+};
+
+export const clearOrder = () => (dispatch) => {
+  dispatch({ type: CLEAR_ORDER });
+};
+
+export const fetchOrders = () => (dispatch) => {
+  Axios.get(process.env.REACT_APP_API_URL + "/orders")
+    .then((response) => {
+      dispatch({ type: FETCH_ORDERS, payload: response.data });
+    });
+};
+

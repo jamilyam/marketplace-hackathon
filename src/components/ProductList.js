@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Grid } from "@material-ui/core";
 import ProductCard from "./ProductCard";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../redux/products/actions";
 import { Pagination, PaginationItem } from "@material-ui/lab";
 import { Link, useLocation } from "react-router-dom";
+
 
 export default function ProductList() {
   const { data, loading, error, totalCount } = useSelector((state) => state.products);
@@ -15,6 +16,8 @@ export default function ProductList() {
   
   const query = new URLSearchParams(location.search);
   const page = query.get("_page") || 1;
+
+  
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch, location.search])

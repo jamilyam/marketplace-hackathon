@@ -1,4 +1,4 @@
-import { isUserAuth } from "../../routes/index";
+import { isUserAuth } from "../../routes";
 import {
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
@@ -7,11 +7,13 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILED,
 } from "./constants";
+
 const INIT_STATE = {
   isAuth: isUserAuth(),
   loading: false,
   error: null,
 };
+
 const AuthReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case LOGIN_USER:
@@ -22,11 +24,11 @@ const AuthReducer = (state = INIT_STATE, action) => {
       return { ...state, loading: false, error: null, isAuth: true };
 
     case REGISTER_USER_SUCCESS:
-      return { ...state, loading: false, error: null };
+      return { ...state, loading: false, err: null };
 
     case LOGIN_USER_FAILED:
     case REGISTER_USER_FAILED:
-      return { ...state, loading: false, isAuth: false, error: action.payload };
+      return { ...state, isAuth: false, loading: false, error: action.payload };
 
     default:
       return state;

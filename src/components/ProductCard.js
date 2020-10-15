@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   CardHeader,
   Card,
@@ -11,12 +11,12 @@ import {
   makeStyles,
   Button,
 } from "@material-ui/core";
-import {
-  MoreVert as MoreVertIcon,
-  ShoppingCart,
-} from "@material-ui/icons";
+import { MoreVert as MoreVertIcon } from "@material-ui/icons";
 import emptyImage from "../assets/empty-image.png";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart} from "../redux/products/actions";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -54,11 +54,26 @@ export default function ProductCard({ data }) {
   const classes = useStyles();
   const [isEdit, setEdit] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const handleEditClick = (e) => {
     e.stopPropagation();
     setEdit(!isEdit);
     history.replace("/products/" + data.id);
   };
+
+  const handleAddToCart = () => {
+    dispatch(addItemToCart(data));
+  };
+  // const handleRemoveFromCart = () => {
+  //   dispatch(removeItemFromCart(data));
+  // };
+
+  const cart = useSelector((state) => state.products.cart);
+
+  const isInCart = useMemo(() => {
+    return cart.some((cartItem) => cartItem.id === data.id);
+  }, [cart, data.id]);
 
   return (
     <Card className={classes.card}>
@@ -103,9 +118,25 @@ export default function ProductCard({ data }) {
       </CardContent>
       <CardActions className={classes.CardActions} disableSpacing>
         <div>
-          <IconButton aria-label="add to card">
-            <ShoppingCart />
-          </IconButton>
+          {isInCart ? (
+            <IconButton
+              // onClick={handleRemoveFromCart}
+              style={{ color: "orange" }}
+              // disabled={true}
+              aria-label="add to card"
+            >
+              {/* <RemoveShoppingCartIcon /> */}
+            </IconButton>
+          ) : (
+            <IconButton
+              onClick={handleAddToCart}
+              disabled={data.inventory > 0 ? "" : "disabled"}
+              aria-label="add to card"
+            >
+              {data.inventory > 0 ? "" : "Sold Out"}
+              <ShoppingCartIcon />
+            </IconButton>
+          )}
         </div>
         <div>
           {data.salePrice != null && (
@@ -117,13 +148,13 @@ export default function ProductCard({ data }) {
           <Button size="large" color="primary">
             {data.salePrice ?? data.price}
           </Button>
-          <Button
+          {/* <Button
             size="large"
             color="primary"
             onClick={() => history.replace("/products/" + data.id)}
           >
             Подробнее
-          </Button>
+          </Button> */}
         </div>
       </CardActions>
     </Card>
