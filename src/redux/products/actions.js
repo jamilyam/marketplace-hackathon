@@ -15,11 +15,12 @@ export const fetchData = (page=1)=>(dispatch)=>{
   dispatch({
     type: FETCH_DATA
   });
-  Axios.get(process.env.REACT_APP_API_URL+`/products?_limit=2&_page=${page}`)
-    .then(({data, headers})=>{
-      // console.log(data);
-      // console.log(headers);
-      const totalCount = headers["x-total-count"] || data.length;
+  const query = new URLSearchParams(window.location.search);
+  query.set("_limit", 5);
+  
+  Axios.get(process.env.REACT_APP_API_URL + `/products?${query.toString()}`)
+    .then(({ data, headers }) => {
+      const totalCount = headers["x-total-count"] || data.length
       dispatch(fetchDataSuccess(data, parseInt(totalCount)));
     })
     .catch(err=>{
@@ -27,10 +28,9 @@ export const fetchData = (page=1)=>(dispatch)=>{
     })
 };
 
-export const fetchDataSuccess = (data,total) => ({
+export const fetchDataSuccess = (data, total) => ({
   type: FETCH_DATA_SUCCESS,
-  // payload: data,
-  payload: {data, total},
+  payload: {data, total}
 });
 
 export const fetchDataFailed = (err) => ({

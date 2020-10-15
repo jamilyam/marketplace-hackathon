@@ -44,6 +44,7 @@ const Contacts = lazy(() => import("./Contacts"));
 const Admin = lazy(() => import("./Admin"));
 const ShoppingCart = lazy(() => import("./ShoppingCart"));
 const OrderForm = lazy(() => import("./OrderForm"));
+const Catalog = lazy(() => import("./Catalog"));
 
 ///?Auth pages
 const Login = lazy(() => import("./auth/Login"));
@@ -58,6 +59,12 @@ const Routes = () => {
           <Route exact path="/">
             <Layout>
               <Home />
+            </Layout>
+          </Route>
+             
+        <Route exact path="/Catalog">
+            <Layout>
+              <Catalog />
             </Layout>
           </Route>
 
