@@ -1,13 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Grid } from "@material-ui/core";
 import ProductCard from "./ProductCard";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../redux/products/actions";
+import { Pagination, PaginationItem } from "@material-ui/lab";
+import { Link, useLocation } from "react-router-dom";
+
 
 export default function ProductList() {
-  const { data, loading, error } = useSelector((state) => state.products);
+  const { data, loading, error, totalCount } = useSelector(
+    (state) => state.products
+  );
 
   const dispatch = useDispatch();
+
+  const location = useLocation();
+    const page = useMemo(() => {
+      const query = new URLSearchParams(location.search);
+      return parseInt(query.get("_page") || 1);
+    }, [location.search]);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -20,12 +31,29 @@ export default function ProductList() {
     return <h1>Error: {error.message}</h1>;
   }
   return (
-    <Grid container>
-      {data.map((item) => (
-        <Grid key={"product-card-" + item.id} item xs={12} md={4}>
-          <ProductCard data={item} />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid container>
+        {data.map((item) => (
+          <Grid key={"product-card-" + item.id} item xs={12} md={4}>
+            <ProductCard
+              data={item}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <Grid container justify="center">
+        <Pagination 
+          count={Math.ceil(totalCount/2)}
+          page={page}
+          renderItem={(item)=>(
+            <PaginationItem
+              component={Link}
+              to={`/?_page=${item.page}`}
+              {...item}
+            />
+          )}
+        />
+      </Grid>
+    </>
   );
 }

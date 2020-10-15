@@ -1,36 +1,46 @@
-import React from "react";
-import { Container, TextField, Button, Grid, FormGroup, makeStyles, Link, Card, CardContent } from "@material-ui/core";
-import { Formik } from "formik";
-import myValidator from "validator";
-import {useHistory} from 'react-router-dom'
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../redux/actions";
+import { 
+  Button, 
+  Container, 
+  FormGroup, 
+  Grid, 
+  makeStyles, 
+  TextField,
+  Link, Card, CardContent
+} from '@material-ui/core'
+import React from 'react';
+import { Formik } from 'formik';
+
+import myValidatior from 'validator';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../redux/actions';
 
 const useStyles = makeStyles(()=>({
-  btnSubmit:{
-    width:"100%",
+  btnSubmit: {
+    width: "100%",
     margin: "20px 0"
   },
-  inp:{
-    margin:"10px 0"
+  inp: {
+    margin: "10px 0"
   },
   signupLink:{
-    marginLeft: "auto",
     display: "block",
-    textAlign:"end"
+    textAlign: "end"
   },
   formWrapper:{
-    minHeight:"100vh",
-    display:"flex",
-    alignItems:"center"
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center"
   }
 }))
 
 export default function Login() {
+  
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const {error, isAuth, loading} = useSelector(state=>state.auth);
+  const { error, loading } = useSelector(state=>state.auth);
+
   const LoginForm = ({
     values,
     errors,
@@ -39,11 +49,11 @@ export default function Login() {
     touched,
     handleSubmit,
     isSubmitting,
-  }) => (
+  })=>(
     <form onSubmit={handleSubmit}>
       <h1>Войти</h1>
       {error && (
-        <h4 style={{color:"red"}}>{error.message}</h4>
+        <h4 style={{color: "red"}}>{error.message}</h4>
       )}
       <FormGroup>
         <TextField
@@ -55,68 +65,61 @@ export default function Login() {
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.email}
-          helperText={!!errors.email && touched.email && errors.email}
+          helperText={(!!errors.email && touched.email) && errors.email}
+          placeholder="demo@demo.com"
         />
       </FormGroup>
       <FormGroup>
         <TextField
           label="Введите пароль"
           error={!!errors.password && touched.password}
-          сlassName={classes.inp}
+          className={classes.inp}
           type="password"
           name="password"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.password}
-          helperText={!!errors.password && touched.password && errors.password}
+          helperText={(!!errors.password && touched.password) && errors.password}
         />
       </FormGroup>
-      <Link
-        className={classes.inp}
-        onClick={() => history.replace("/auth/forget-password")}
-      >
-        Вы забыли пароль
+      <Link onClick={()=>history.replace("/auth/forgot-password")}>
+        Забыли пароль?
       </Link>
-      <Button
-        className={classes.btnSubmit}
-        type="submit"
-        disabled={loading}
-        color="primary"
-        variant="contained"
-      >
+      <Button className={classes.btnSubmit} variant="contained" color="primary" type="submit" disabled={loading}>
         Отправить
       </Button>
-      <Link
-        className={classes.signupLink}
-        onClick={() => history.replace("/auth/register")}
-      >
-        У вас еще нет аккаунта?
+      <Link className={classes.signupLink} onClick={()=>history.replace("/auth/register")}>
+        Нет аккаунта?
       </Link>
+
     </form>
   );
 
-  const validator = (values) => {
+  const validator = (values)=>{
     const errors = {};
-    if (!values.email.trim()) {
-      errors.email = "Это поле обязательно!";
-    } else if (!myValidator.isEmail(values.email)) {
-      errors.email = "Неправильный email!";
+    if(!values.email.trim()){
+      errors.email = "Это поле обязательно!"
+    }else if(!myValidatior.isEmail(values.email)){
+      errors.email = "Не правильный email!"
     }
-
-    if (!values.password) {
-      errors.password = "Это поле обязательно";
-    } else if (values.password.length < 6) {
+    if(!values.password){
+      errors.password = "Это поле обязательно!"
+    }else if(values.password.length < 6){
       errors.password = "Минимальная длина Пароля 6 символов";
     }
     return errors;
-  };
+  }
 
-  const handleFormSubmit = (values) => {
+  const handleFormSubmit = ( values, helpers )=>{
     console.log(values);
-    dispatch(loginUser(values,()=>{
+    dispatch(loginUser(values, ()=>{
       history.replace("/");
     }))
-  };
+  }
+
+  // if(isAuth){
+  //   return <Redirect to="/"/>
+  // }
 
   return (
     <div style={{backgroundColor: "#c7c7c7"}}>
@@ -126,7 +129,7 @@ export default function Login() {
             <Card>
               <CardContent>
                 <Formik
-                  initialValues={{ email: "", password: "" }}
+                  initialValues={{ email: "", password:"" }}
                   validate={validator}
                   onSubmit={handleFormSubmit}
                 >
@@ -138,5 +141,5 @@ export default function Login() {
         </Grid>
       </Container>
     </div>
-  );
+  )
 }

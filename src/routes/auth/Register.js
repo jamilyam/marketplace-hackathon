@@ -1,17 +1,18 @@
-import React from "react";
 import {
-  Container,
-  TextField,
   Button,
-  Grid,
+  Container,
   FormGroup,
+  Grid,
   makeStyles,
+  TextField,
   Link,
   Card,
   CardContent,
 } from "@material-ui/core";
+import React from "react";
 import { Formik } from "formik";
-import myValidator from "validator";
+
+import myValidatior from "validator";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
@@ -23,7 +24,6 @@ const useStyles = makeStyles(() => ({
     margin: "10px 0",
   },
   signupLink: {
-    marginLeft: "auto",
     display: "block",
     textAlign: "end",
   },
@@ -37,6 +37,7 @@ const useStyles = makeStyles(() => ({
 export default function Register() {
   const classes = useStyles();
   const history = useHistory();
+
   const LoginForm = ({
     values,
     errors,
@@ -65,7 +66,7 @@ export default function Register() {
         <TextField
           label="Придумайте пароль"
           error={!!errors.password && touched.password}
-          сlassName={classes.inp}
+          className={classes.inp}
           type="text"
           name="password"
           onChange={handleChange}
@@ -74,11 +75,12 @@ export default function Register() {
           helperText={!!errors.password && touched.password && errors.password}
         />
       </FormGroup>
+
       <FormGroup>
         <TextField
-          label="Повторить пароль"
-          error={!!errors.password && touched.password}
-          сlassName={classes.inp}
+          label="Повторите пароль"
+          error={!!errors.password2 && touched.password2}
+          className={classes.inp}
           type="text"
           name="password2"
           onChange={handleChange}
@@ -89,12 +91,13 @@ export default function Register() {
           }
         />
       </FormGroup>
+
       <Button
         className={classes.btnSubmit}
+        variant="contained"
+        color="primary"
         type="submit"
         disabled={isSubmitting}
-        color="primary"
-        variant="contained"
       >
         Отправить
       </Button>
@@ -111,18 +114,17 @@ export default function Register() {
     const errors = {};
     if (!values.email.trim()) {
       errors.email = "Это поле обязательно!";
-    } else if (!myValidator.isEmail(values.email)) {
-      errors.email = "Неправильный email!";
+    } else if (!myValidatior.isEmail(values.email)) {
+      errors.email = "Не правильный email!";
     }
-
     if (!values.password) {
-      errors.password = "Это поле обязательно";
+      errors.password = "Это поле обязательно!";
     } else if (values.password.length < 6) {
       errors.password = "Минимальная длина Пароля 6 символов";
     }
 
     if (!values.password2) {
-      errors.password2 = "Это поле обязательно";
+      errors.password2 = "Это поле обязательно!";
     } else if (values.password !== values.password2) {
       errors.password2 = "Пароли не совпадают";
     }

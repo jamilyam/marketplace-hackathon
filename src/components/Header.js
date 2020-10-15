@@ -2,22 +2,20 @@ import {
   Button,
   Container,
   Grid,
-  IconButton,
-  TextField,
 } from "@material-ui/core";
 
 import {
   AccountBoxRounded,
   CompareRounded,
-  ShoppingCartSharp,
 } from "@material-ui/icons";
 import React from "react";
-import {
-  withStyles,
-} from "@material-ui/core/styles";
+
+import { withStyles } from "@material-ui/core/styles";
+
 import { useHistory } from "react-router-dom";
 import styles from "./Header.module.css";
 import SearchItem from "./SearchItem";
+import ShoppingIcon from "./ShoppingIcon";
 
 const ColorButton = withStyles((theme) => ({
   root: {
@@ -30,7 +28,6 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 
 export default function Header() {
-  
   const history = useHistory();
 
   const logout = () => {
@@ -49,18 +46,15 @@ export default function Header() {
         </div>{" "}
         <div className={styles.image}>
           {" "}
-          <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png"></img>{" "}
+          <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png" alt="header"></img>{" "}
         </div>{" "}
         <div className={styles.headercart}>
-          {" "}
-          <a href="">
-            {" "}
+          
             <span>0 сом</span>{" "}
             <ColorButton aria-label="login">
               {" "}
-              <ShoppingCartSharp />{" "}
+              <ShoppingIcon />{" "}
             </ColorButton>{" "}
-          </a>{" "}
         </div>{" "}
       </div>{" "}
       <div className={styles.headerbottom} maxWidth="md">
@@ -78,7 +72,7 @@ export default function Header() {
             </Grid>{" "}
             <Grid item>
               {" "}
-              <ColorButton onClick={() => history.replace("/about-us")}>
+              <ColorButton onClick={() => history.replace("/shopping-cart")}>
                 {" "}
                 ABOUT US{" "}
               </ColorButton>{" "}
@@ -113,7 +107,7 @@ export default function Header() {
             <ColorButton aria-label="login">
               {" "}
               <AccountBoxRounded
-                
+                onClick={() => history.replace("/auth/login")}
               />{" "}
             </ColorButton>{" "}
           </div>{" "}
