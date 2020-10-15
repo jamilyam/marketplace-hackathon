@@ -44,6 +44,7 @@ const Contacts = lazy(() => import("./Contacts"));
 const Admin = lazy(() => import("./Admin"));
 const MyOrder = lazy(() => import("./MyOrder"));
 const OrderForm = lazy(() => import("./OrderForm"));
+const Catalog = lazy(() => import("./Catalog"));
 
 ///?Auth pages
 const Login = lazy(() => import("./auth/Login"));
@@ -55,6 +56,12 @@ const Routes = () => {
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
+        <PrivateRoute exact path="/Catalog">
+            <Layout>
+              <Catalog />
+            </Layout>
+          </PrivateRoute>
+
           <PrivateRoute exact path="/">
             <Layout>
               <Home />

@@ -5,9 +5,13 @@ import SlideShow from "../components/Carousel";
 
 export default function Home() {
   return (
+    <>
+    <div>
+    <SlideShow/>
+    </div>
     <Container maxWidth="md">
-      <SlideShow/>
       <ProductList />
     </Container>
+    </>
   );
 }

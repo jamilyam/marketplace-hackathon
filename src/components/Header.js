@@ -18,6 +18,8 @@ import {
 import { useHistory } from "react-router-dom";
 import styles from "./Header.module.css";
 import SearchItem from "./SearchItem";
+import TemporaryDrawer from "../routes/Catalog";
+
 
 const ColorButton = withStyles((theme) => ({
   root: {
@@ -31,6 +33,10 @@ const ColorButton = withStyles((theme) => ({
 
 export default function Header() {
   
+  const [isDrawerOpen, setIsDraweropen] = React.useState(false);
+
+  const toggleDrawer = ()=>setIsDraweropen(!isDrawerOpen);
+
   const history = useHistory();
 
   const logout = () => {
@@ -40,85 +46,68 @@ export default function Header() {
 
   return (
     <Container maxWidth="xl" className={styles.header}>
-      {" "}
       <div className={styles.headertop}>
-        {" "}
         <div className={styles.phone}>
-          {" "}
-          <span>0777 777 777</span>{" "}
-        </div>{" "}
+          <span>0777 777 777</span>
+        </div>
         <div className={styles.image}>
-          {" "}
-          <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png"></img>{" "}
-        </div>{" "}
+          <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png"></img>
+        </div>
         <div className={styles.headercart}>
-          {" "}
           <a href="">
-            {" "}
-            <span>0 сом</span>{" "}
+            <span>0 сом</span>
             <ColorButton aria-label="login">
-              {" "}
-              <ShoppingCartSharp />{" "}
-            </ColorButton>{" "}
-          </a>{" "}
-        </div>{" "}
-      </div>{" "}
+              <ShoppingCartSharp />
+            </ColorButton>
+          </a>
+        </div>
+      </div>
       <div className={styles.headerbottom} maxWidth="md">
-        {" "}
         <div className={styles.leftside} maxWidth="md">
-          {" "}
           <Grid container>
-            {" "}
             <Grid item>
-              {" "}
+              <ColorButton onClick={toggleDrawer}>
+                Catalogue
+              </ColorButton>
+            </Grid>
+            <Grid item>
               <ColorButton onClick={() => history.replace("/")}>
-                {" "}
-                HOME{" "}
-              </ColorButton>{" "}
-            </Grid>{" "}
+                HOME
+              </ColorButton>
+            </Grid>
             <Grid item>
-              {" "}
               <ColorButton onClick={() => history.replace("/about-us")}>
-                {" "}
-                ABOUT US{" "}
-              </ColorButton>{" "}
-            </Grid>{" "}
+                ABOUT US
+              </ColorButton>
+            </Grid>
             <Grid item>
-              {" "}
               <ColorButton onClick={() => history.replace("/admin")}>
-                {" "}
-                ADMIN{" "}
-              </ColorButton>{" "}
-            </Grid>{" "}
+                ADMIN
+              </ColorButton>
+            </Grid>
             <Grid item>
-              {" "}
-              <ColorButton onClick={logout}> Log Out </ColorButton>{" "}
-            </Grid>{" "}
-          </Grid>{" "}
-        </div>{" "}
+              <ColorButton onClick={logout}> Log Out </ColorButton>
+            </Grid>
+          </Grid>
+        </div>
         <div className={styles.rightside} flex-xs-7>
-          {" "}
           <div className={styles.headersearch}>
-            {" "}
-            <SearchItem />{" "}
-          </div>{" "}
+            <SearchItem />
+          </div>
           <div className={styles.login}>
-            {" "}
             <ColorButton aria-label="compare">
-              {" "}
               <CompareRounded
                 onClick={() => history.replace("/auth/register")}
-              />{" "}
-            </ColorButton>{" "}
+              />
+            </ColorButton>
             <ColorButton aria-label="login">
-              {" "}
-              <AccountBoxRounded
-                
-              />{" "}
-            </ColorButton>{" "}
-          </div>{" "}
-        </div>{" "}
-      </div>{" "}
+              <AccountBoxRounded/>
+            </ColorButton>
+          </div>
+        </div>
+      </div>
+
+      <TemporaryDrawer isOpen={isDrawerOpen} toggle={toggleDrawer}/>
     </Container>
   );
 }
