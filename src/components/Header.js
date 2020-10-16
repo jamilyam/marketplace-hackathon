@@ -1,4 +1,5 @@
 import {
+  AppBar,
   Button,
   Container,
   Grid,
@@ -11,7 +12,7 @@ import {
   CompareRounded,
   ShoppingCartSharp,
 } from "@material-ui/icons";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   withStyles,
 } from "@material-ui/core/styles";
@@ -44,6 +45,15 @@ export default function Header() {
     history.replace("/auth/login");
   };
 
+  const headerBottom = useRef(null);
+
+  // useEffect(()=>{
+  //   window.addEventListener("onS")
+  //   return ()=>{
+
+  //   }
+  // },[])
+
   return (
     <Container maxWidth="xl" className={styles.header}>
       <div className={styles.headertop}>
@@ -62,8 +72,8 @@ export default function Header() {
           </a>
         </div>
       </div>
-      <div className={styles.headerbottom} maxWidth="md">
-        <div className={styles.leftside} maxWidth="md">
+      <div className={styles.headerbottom}>
+        <div className={styles.leftside}>
           <Grid container>
             <Grid item>
               <ColorButton onClick={toggleDrawer}>
