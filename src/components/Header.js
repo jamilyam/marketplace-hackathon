@@ -3,22 +3,27 @@ import {
   Button,
   Container,
   Grid,
-  IconButton,
-  TextField,
 } from "@material-ui/core";
 
 import {
   AccountBoxRounded,
   CompareRounded,
-  ShoppingCartSharp,
 } from "@material-ui/icons";
+<<<<<<< HEAD
 import React, { useEffect, useRef } from "react";
 import {
   withStyles,
 } from "@material-ui/core/styles";
+=======
+import React from "react";
+
+import { withStyles } from "@material-ui/core/styles";
+
+>>>>>>> 316f5e7ada3fffd911fdd846001be7ecee72eb5f
 import { useHistory } from "react-router-dom";
 import styles from "./Header.module.css";
 import SearchItem from "./SearchItem";
+import ShoppingIcon from "./ShoppingIcon";
 import TemporaryDrawer from "../routes/Catalog";
 
 
@@ -37,6 +42,7 @@ export default function Header() {
   const [isDrawerOpen, setIsDraweropen] = React.useState(false);
 
   const toggleDrawer = ()=>setIsDraweropen(!isDrawerOpen);
+
 
   const history = useHistory();
 
@@ -61,15 +67,14 @@ export default function Header() {
           <span>0777 777 777</span>
         </div>
         <div className={styles.image}>
-          <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png"></img>
+          <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png" alt="header"></img>{" "}
         </div>
         <div className={styles.headercart}>
-          <a href="">
+          
             <span>0 сом</span>
             <ColorButton aria-label="login">
-              <ShoppingCartSharp />
+              <ShoppingIcon />
             </ColorButton>
-          </a>
         </div>
       </div>
       <div className={styles.headerbottom}>
@@ -83,6 +88,11 @@ export default function Header() {
             <Grid item>
               <ColorButton onClick={() => history.replace("/")}>
                 HOME
+              </ColorButton>
+            </Grid>
+            <Grid item>
+              <ColorButton onClick={() => history.replace("/shopping-cart")}>
+                ABOUT US
               </ColorButton>
             </Grid>
             <Grid item>
@@ -111,13 +121,17 @@ export default function Header() {
               />
             </ColorButton>
             <ColorButton aria-label="login">
-              <AccountBoxRounded/>
+
+              <AccountBoxRounded
+                onClick={() => history.replace("/auth/login")}
+              />
             </ColorButton>
           </div>
         </div>
       </div>
 
       <TemporaryDrawer isOpen={isDrawerOpen} toggle={toggleDrawer}/>
+
     </Container>
   );
 }

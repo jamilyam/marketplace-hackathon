@@ -5,13 +5,13 @@ import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   banner: {
-    // height: "400px",
+    height: "400px",
     position: "relative",
     // width: "100vw",
   },
   media: {
     height: 0,
-    paddingTop: "56.25%",
+    paddingTop: "46.25%",
     backgroundSize: "cover",
     position: "relative",
   },
@@ -70,8 +70,8 @@ function Item(props) {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <Paper size="large">
-      <Grid className="baner" item xs={12} key={props.item.name}>
+    <Paper>
+      <Grid item xs={12} key={props.item.name}>
         <CardMedia
           className={classes.media}
           image={props.item.image}

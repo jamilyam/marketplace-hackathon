@@ -1,18 +1,11 @@
-import { Button, Container } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import React from 'react'
 import styles from './Header.module.css'
 import {
-  fade,
-  ThemeProvider,
   withStyles,
   makeStyles,
-  createMuiTheme,
 } from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
-import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import { green } from '@material-ui/core/colors';
 import classes from './Header.module.css';
 
 
@@ -49,7 +42,10 @@ export default function Footer() {
       <div maxWidth="md" className={styles.container}>
         <div className={styles.footer_leftside}>
           <div className={styles.footer_logo}>
-            <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_2.png"></img>
+            <img
+              src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_2.png"
+              alt="footer"
+            ></img>
           </div>
           <div className={styles.footer_adress}>
             <div className={styles.footer_phone}> 0777 777 777</div>
@@ -60,7 +56,9 @@ export default function Footer() {
         </div>
         <div className={styles.footer_rightside}>
           <div className={styles.footer_subscribe}>
-            <div className={styles.subscribe_title}>Хотите получать новости и быть в курсе акции?</div>
+            <div className={styles.subscribe_title}>
+              Хотите получать новости и быть в курсе акции?
+            </div>
             <div className={styles.subsribe_input}>
               <form className={styles.subscribe_form}>
                 <ValidationTextField
@@ -79,14 +77,23 @@ export default function Footer() {
           </div>
           <div className={styles.footer_menu}>
             <ul className={styles.menu_list}>
-              <li className={styles.menu_item}><a href="#">Доставка</a> </li>
-              <li className={styles.menu_item}> <a href="#">Обратная связь</a></li>
-              <li className={styles.menu_item}><a href="#">Новости</a> </li>
-              <li className={styles.menu_item}><a href="#">Личный кабинет</a> </li>
+              <li className={styles.menu_item}>
+                <a href="#">Доставка</a>{" "}
+              </li>
+              <li className={styles.menu_item}>
+                {" "}
+                <a href="#">Обратная связь</a>
+              </li>
+              <li className={styles.menu_item}>
+                <a href="#">Новости</a>{" "}
+              </li>
+              <li className={styles.menu_item}>
+                <a href="#">Личный кабинет</a>{" "}
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

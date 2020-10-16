@@ -23,12 +23,12 @@ export const loginUser = ({ email, password }, cb = () => {}) => (dispatch) => {
         type: LOGIN_USER_SUCCESS,
       });
     })
-    .catch((err) =>
+    .catch((err) => {
       dispatch({
         type: LOGIN_USER_FAILED,
         payload: err.response.data,
-      })
-    );
+      });
+    });
 };
 
 export const registerUser = ({ email, password }, cb = () => {}) => (
