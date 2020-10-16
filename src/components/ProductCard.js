@@ -120,12 +120,9 @@ export default function ProductCard({ data }) {
         <div>
           {isInCart ? (
             <IconButton
-              // onClick={handleRemoveFromCart}
               style={{ color: "orange" }}
-              // disabled={true}
               aria-label="add to card"
             >
-              {/* <RemoveShoppingCartIcon /> */}
             </IconButton>
           ) : (
             <IconButton

@@ -19,7 +19,7 @@ class ProductAddForm extends Component {
     title: "",
     description: "",
     price: "",
-    onSale: false,
+    onSale: true,
     discountInPercent: "",
     salePrice: "",
     author: "",
@@ -28,6 +28,7 @@ class ProductAddForm extends Component {
     category: "",
     brand: "",
     gender: "",
+    inventory:"",
   };
   handleSubmitOn = (e) => {
     const product = {
@@ -44,6 +45,7 @@ class ProductAddForm extends Component {
       category: this.state.category,
       brand: this.state.brand,
       gender: this.state.gender,
+      inventory:this.state.inventory,
       createdAt: new Date().toJSON(),
       updatedAt: new Date().toJSON(),
     };
@@ -53,7 +55,7 @@ class ProductAddForm extends Component {
       title: "",
       description: "",
       price: "",
-      onSale: false,
+      onSale: true,
       discountInPercent: "",
       salePrice: "",
       author: "",
@@ -62,6 +64,7 @@ class ProductAddForm extends Component {
       category: "",
       brand: "",
       gender: "",
+      inventory:"",
     });
   };
 
@@ -178,14 +181,14 @@ class ProductAddForm extends Component {
                   </Grid>
                   <Grid item xs={6}>
                     <InputLabel htmlFor="component-simple">
-                      Номер телефона
+                      Количество товара
                     </InputLabel>
                     <Input
                       fullWidth
-                      name="phone"
+                      name="inventory"
                       id="component-simple"
                       onChange={this.handleInput}
-                      value={this.state.phone}
+                      value={this.state.inventory}
                       aria-describedby="component-simple"
                     />
                   </Grid>
