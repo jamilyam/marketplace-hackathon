@@ -52,19 +52,19 @@ export default function TemporaryDrawer({toggle, isOpen, anchor="left"}) {
           </ListItemIcon>
           <ListItemText>Все товары</ListItemText>
         </ListItem>
-        <ListItem button onClick={()=>handleChangeFilter("?category=boards")} selected={search.get("category")==="boards"} color="primary">
+        <ListItem button onClick={()=>handleChangeFilter("?category=Boards")} selected={search.get("category")==="boards"} color="primary">
         <ListItemIcon>
             <ConfirmationNumberIcon/>
           </ListItemIcon>
           <ListItemText>Борды</ListItemText>
         </ListItem>
-        <ListItem button onClick={()=>handleChangeFilter("?category=glasses")} selected={search.get("category")==="glasses"} color="primary">
+        <ListItem button onClick={()=>handleChangeFilter("?category=Glasses")} selected={search.get("category")==="glasses"} color="primary">
         <ListItemIcon>
             <LeakAddIcon/>
           </ListItemIcon>
           <ListItemText>Очки</ListItemText>
         </ListItem>
-        <ListItem button onClick={()=>handleChangeFilter("?category=holders")} selected={search.get("category")==="holders"} color="primary">
+        <ListItem button onClick={()=>handleChangeFilter("?category=Holders")} selected={search.get("category")==="holders"} color="primary">
         <ListItemIcon>
             <LockIcon/>
           </ListItemIcon>

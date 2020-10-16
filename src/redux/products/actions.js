@@ -16,7 +16,7 @@ export const fetchData = (page=1)=>(dispatch)=>{
     type: FETCH_DATA
   });
   const query = new URLSearchParams(window.location.search);
-  query.set("_limit", 5);
+  query.set("_limit", 6);
   
   Axios.get(process.env.REACT_APP_API_URL + `/products?${query.toString()}`)
     .then(({ data, headers }) => {

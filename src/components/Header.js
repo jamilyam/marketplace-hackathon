@@ -1,4 +1,5 @@
 import {
+  AppBar,
   Button,
   Container,
   Grid,
@@ -8,10 +9,10 @@ import {
   AccountBoxRounded,
   CompareRounded,
 } from "@material-ui/icons";
-import React from "react";
-
-import { withStyles } from "@material-ui/core/styles";
-
+import React, { useEffect, useRef } from "react";
+import {
+  withStyles,
+} from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import styles from "./Header.module.css";
 import SearchItem from "./SearchItem";
@@ -43,6 +44,15 @@ export default function Header() {
     history.replace("/auth/login");
   };
 
+  const headerBottom = useRef(null);
+
+  // useEffect(()=>{
+  //   window.addEventListener("onS")
+  //   return ()=>{
+
+  //   }
+  // },[])
+
   return (
     <Container maxWidth="xl" className={styles.header}>
       <div className={styles.headertop}>
@@ -61,8 +71,8 @@ export default function Header() {
           </ColorButton>
         </div>
       </div>
-      <div className={styles.headerbottom} maxWidth="md">
-        <div className={styles.leftside} maxWidth="md">
+      <div className={styles.headerbottom}>
+        <div className={styles.leftside}>
           <Grid container>
             <Grid item>
               <ColorButton onClick={toggleDrawer}>Catalogue</ColorButton>
