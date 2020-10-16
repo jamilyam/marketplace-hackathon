@@ -60,23 +60,22 @@ export default function Header() {
           <span>0777 777 777</span>
         </div>
         <div className={styles.image}>
-          <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png" alt="header"></img>{" "}
+          <img
+            src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png"
+            alt="header"
+          ></img>{" "}
         </div>
         <div className={styles.headercart}>
-          
-            <span>0 сом</span>
-            <ColorButton aria-label="login">
-              <ShoppingIcon />
-            </ColorButton>
+          <ColorButton>
+            <ShoppingIcon />
+          </ColorButton>
         </div>
       </div>
       <div className={styles.headerbottom}>
         <div className={styles.leftside}>
           <Grid container>
             <Grid item>
-              <ColorButton onClick={toggleDrawer}>
-                Catalogue
-              </ColorButton>
+              <ColorButton onClick={toggleDrawer}>Catalogue</ColorButton>
             </Grid>
             <Grid item>
               <ColorButton onClick={() => history.replace("/")}>
@@ -84,8 +83,8 @@ export default function Header() {
               </ColorButton>
             </Grid>
             <Grid item>
-              <ColorButton onClick={() => history.replace("/shopping-cart")}>
-                ABOUT US
+              <ColorButton onClick={() => history.replace("/contacts")}>
+                CONTACTS
               </ColorButton>
             </Grid>
             <Grid item>
@@ -114,7 +113,6 @@ export default function Header() {
               />
             </ColorButton>
             <ColorButton aria-label="login">
-
               <AccountBoxRounded
                 onClick={() => history.replace("/auth/login")}
               />
@@ -123,8 +121,7 @@ export default function Header() {
         </div>
       </div>
 
-      <TemporaryDrawer isOpen={isDrawerOpen} toggle={toggleDrawer}/>
-
+      <TemporaryDrawer isOpen={isDrawerOpen} toggle={toggleDrawer} />
     </Container>
   );
 }
