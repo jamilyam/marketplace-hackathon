@@ -7,11 +7,10 @@ const useStyles = makeStyles((theme) => ({
   banner: {
     height: "400px",
     position: "relative",
-    // width: "100vw",
   },
   media: {
     height: 0,
-    paddingTop: "46.25%",
+    paddingTop: "36.25%",
     backgroundSize: "cover",
     position: "relative",
   },

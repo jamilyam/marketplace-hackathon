@@ -45,6 +45,7 @@ export default function FormEdit() {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
   const [salePrice, setSalePrice] = useState("");
+  const [inventory, setInventory] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -61,6 +62,7 @@ export default function FormEdit() {
         setSalePrice(response.data.salePrice);
         setCategory(response.data.category);
         setImage(response.data.image);
+        setInventory(response.data.inventory);
       })
       .catch(setError)
       .finally(() => setLoading(false));
@@ -84,6 +86,7 @@ export default function FormEdit() {
         salePrice,
         category,
         image,
+        inventory,
         // updatedAt: new Date().toJSON(),
       })
     );
@@ -155,6 +158,16 @@ export default function FormEdit() {
           name="image"
           onChange={(e) => setImage(e.target.value)}
           value={image}
+        />
+      </FormGroup>
+      <FormGroup>
+        <TextField
+          label="Количество товаров"
+          className={classes.inp}
+          type="number"
+          name="inventory"
+          onChange={(e) => setInventory(e.target.value)}
+          value={inventory}
         />
       </FormGroup>
 

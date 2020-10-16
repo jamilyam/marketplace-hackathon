@@ -43,7 +43,7 @@ const Home = lazy(() => import("./Home"));
 const Contacts = lazy(() => import("./Contacts"));
 const Admin = lazy(() => import("./Admin"));
 const ShoppingCart = lazy(() => import("./ShoppingCart"));
-const OrderForm = lazy(() => import("./OrderForm"));
+const AboutUs = lazy(() => import("./AboutUs"));
 const Catalog = lazy(() => import("./Catalog"));
 
 ///?Auth pages
@@ -98,9 +98,9 @@ const Routes = () => {
             </Layout>
           </Route>
 
-          <PrivateRoute exact path="/order-form">
+          <PrivateRoute exact path="/about-us">
             <Layout>
-              <OrderForm />
+              <AboutUs/>
             </Layout>
           </PrivateRoute>
 
