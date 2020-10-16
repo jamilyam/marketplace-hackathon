@@ -39,7 +39,7 @@ export default function ProductList() {
     </Grid>
     <Grid>
         <Pagination
-          count={Math.ceil(totalCount/5)}
+          count={Math.ceil(totalCount/6)}
           page={parseInt(page)}
           renderItem={(item) => (
             <PaginationItem

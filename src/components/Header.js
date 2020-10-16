@@ -9,17 +9,10 @@ import {
   AccountBoxRounded,
   CompareRounded,
 } from "@material-ui/icons";
-<<<<<<< HEAD
 import React, { useEffect, useRef } from "react";
 import {
   withStyles,
 } from "@material-ui/core/styles";
-=======
-import React from "react";
-
-import { withStyles } from "@material-ui/core/styles";
-
->>>>>>> 316f5e7ada3fffd911fdd846001be7ecee72eb5f
 import { useHistory } from "react-router-dom";
 import styles from "./Header.module.css";
 import SearchItem from "./SearchItem";
