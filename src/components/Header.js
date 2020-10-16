@@ -56,24 +56,10 @@ export default function Header() {
           
             <span>0 сом</span>
             <ColorButton aria-label="login">
-              {" "}
               <ShoppingIcon />
             </ColorButton>
         </div>
       </div>
-
-          <img src="https://assets3.insales.ru/assets/1/3314/888050/1547865036/logo_1.png"></img>
-        </div>
-        <div className={styles.headercart}>
-          <a href="">
-            <span>0 сом</span>
-            <ColorButton aria-label="login">
-              <ShoppingCartSharp />
-            </ColorButton>
-          </a>
-        </div>
-      </div>
-
       <div className={styles.headerbottom} maxWidth="md">
         <div className={styles.leftside} maxWidth="md">
           <Grid container>
@@ -92,7 +78,7 @@ export default function Header() {
                 ABOUT US
               </ColorButton>
             </Grid>
-
+            <Grid item>
               <ColorButton onClick={() => history.replace("/about-us")}>
                 ABOUT US
               </ColorButton>
@@ -122,11 +108,6 @@ export default function Header() {
               <AccountBoxRounded
                 onClick={() => history.replace("/auth/login")}
               />
-            </ColorButton>
-          </div>
-        </div>
-      </div>
-              <AccountBoxRounded/>
             </ColorButton>
           </div>
         </div>
